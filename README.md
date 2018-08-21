@@ -11,7 +11,10 @@ for JavaScript programming and Visual Studio 2017 for C++ programming.  Visual S
  Either will work just fine for our class. 
 
  While Visual Stuido Code is available on all major platforms, Visual Studio 2017 is only available on Windows.
- If you're running MacOS or Linux, you'll have to use another softwa
+ If you're running MacOS or Linux, you'll have to use another software package.  Visual Studio Code can
+ be [configured to compile and debug C++ applications](https://code.visualstudio.com/docs/languages/cpp), but the
+ setup is a bit cumbersome.  For MacOS, you can use Apple's Xcode or JetBrain's CLion.  For Linux, I would suggest
+ using NetBeans.  
 
  ## Grades
  Course grades will be published on [Canvas](https://canvas.humboldt.edu).
