@@ -9,3 +9,6 @@ for JavaScript programming and Visual Studio 2017 for C++ programming.  Visual S
 [Community Edition](https://visualstudio.microsoft.com/downloads/) is free for everyone and Visual Studio 2017
 [Enterprise Edition](http://humboldt.onthehub.com/) is free for HSU computer science majors (login required).
  Either will work just fine for our class. 
+
+ ## Grades
+ Course grades will be published on [Canvas](https://canvas.humboldt.edu).
