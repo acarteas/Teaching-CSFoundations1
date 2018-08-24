@@ -1,0 +1,45 @@
+<script>
+
+    //This is a comment.
+    //Each comment line needs two //.
+    //Comment lines do not get executed (run)
+
+    //In class yesterday, we wrote the assignment
+    //command like:
+    //LET x = 5
+
+    //In JavaScript, this is written like:
+    var x = 5; //the semi-colon is like a period in a sentence
+
+    //Bad practice below:
+    //var y = 2; var z = 7;
+
+    //Ideally, we want no more than one command (sentence) 
+    //per line.
+    y = 2;
+    z = 7;
+
+    //show the words "Hello, World!" on the screen
+    //alert("Hello, World!");
+
+    //output the computation of x and y
+    //alert(x + y);
+
+    //get 2 numbers from the user, display the product
+    //of those numbers with a helpful message
+    result = prompt("Enter a number: ");
+    other_result = prompt("Enter another number: ");
+
+    //result is "5" which is not the same as the number 5
+    //"5" is a string!
+    //alert(typeof(result));
+
+    //Thus, we must convert our inputs into numbers
+    result = Number(result);
+    other_result = Number(other_result);
+
+    total = result + other_result;
+
+    //give back to user
+    alert("The product is: " + total);
+</script>
