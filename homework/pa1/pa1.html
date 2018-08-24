@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title></title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="">
+   <style type="text/css">
+
+      button{
+         width:35px;
+         height:35px;
+      }
+
+      input{
+         width:110px;
+         height:20px;
+         text-align: right;
+      }
+
+      #output{ 
+         max-height: 250px;
+         overflow: auto;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>CS 111 PA #1</h1>
+   <h2>Basic Calcluator</h2>
+   <form id="calculator">
+      <div>
+         <input type="text" id="leftOperand" />
+         <input type="text" id="rightOperand" />
+      </div>
+      <div style="padding-top:5px;">
+         <button id="addButton">+</button>
+         <button id="subButton">-</button>
+         <button id="mulButton">*</button>
+         <button id="divButton">/</button>
+         <button id="clrButton" style="width:75px;">CLEAR</button>
+      </div>
+   </form>
+   <section>
+         <h1>Past Results</h1>
+         <div id="output"></div>
+      </section>
+   <script>
+      
+      //make HTML elements visible in JavaScript
+       var addButton = document.getElementById("addButton");
+       var subButton = document.getElementById("subButton");
+       var mulButton = document.getElementById("mulButton");
+       var divButton = document.getElementById("divButton");
+       var clrButton = document.getElementById("clrButton");
+       var output = document.getElementById("output");
+       var leftOperand = document.getElementById("leftOperand");
+       var rightOperand = document.getElementById("rightOperand");
+
+       //turn off automatic form submission
+       document.getElementById("calculator").addEventListener("submit", function(evt){
+          evt.preventDefault();
+       });
+
+       //listen to button clicks
+      addButton.addEventListener("click", function(evt){
+         
+         //grab current left hand and right hand values
+         var leftHand = Number(leftOperand.value);
+         var rightHand = Number(rightOperand.value);
+
+         //compute result
+         var result = leftHand + rightHand;
+
+         //output results
+         output.innerHTML = '<br />' + leftHand + ' + ' + rightHand + ' = ' + result + output.innerHTML; 
+
+         //put result back into left operand to be used for further computation
+         leftOperand.value = result;
+
+         //clear out right operand
+         rightOperand.value = "";
+
+      });
+      subButton.addEventListener("click", function(evt){
+         
+      });
+      mulButton.addEventListener("click", function(evt){
+         
+      });
+      divButton.addEventListener("click", function(evt){
+         
+      });
+      clrButton.addEventListener("click", function(evt){
+         
+         //clear both values
+         leftOperand.value = "";
+         rightOperand.value = "";
+      });
+   </script>
+</body>
+
+</html>
