@@ -116,6 +116,9 @@ The above output informs us that we failed 3 of the 5 tests.  The two that passe
 are the Addition test and the Clear test.  This makes sense as I have already
 provided you with the correct implementation for these buttons.  
 
+## Due Date
+You must submit your assignment through Canvas no later than midnight, September 4, 2018.
+
 ## Grading
 This assignment is worth 30 points.  For each test case that you fail, you
 will have 10 points deducted from your assignment grade.
