@@ -1,0 +1,76 @@
+<script>
+
+    /*
+    Variable types
+    Javascript has six variable types:
+        numbers (whole and decimal)
+        strings (text)
+        boolean (true / false)
+        null (nothing)
+        undefined (similar to nothing)
+        function
+        object (complex entity)
+    */
+    var x = 123.456; //JS remembers to interpret X as a number
+    var y = "Hello, World!"; //JS remembers to interpret Y as a string
+    var z = true; //Boolean value
+    var a = null;
+    var b = undefined;
+    var c = alert; //this is a function
+
+    //test variable types
+    /*
+    alert("x: " + typeof(x));
+    alert("y: " + typeof(y));
+    alert("z: " + typeof(z));
+    alert("a: " + typeof(a));
+    alert("b: " + typeof(b));
+    alert("c: " + typeof(c));
+    x = "test";
+    alert("x: " + typeof(x));
+    */
+
+    //Operations: +, -, *, /, %, ++, --
+    //The result of the operation changes based on the
+    //variable type that we are operating on.
+    x = 5;
+    y = 3;
+
+    //this will mathematically add x and y (8)
+    //alert(x + y);
+
+    //this will combine the strings (53)
+    x = 5;
+    y = "3";
+    //alert(x + y);
+
+    //Whenever you're operating on two variables, it's best to be certain
+    //that you know what will happen.  Thus, we need to often
+    //convert between variable types.
+
+    //to convert from string to number
+    y = Number(y);
+    //alert(x + y);
+
+    //to convert from a number to a string
+    x = "" + x; //adding an empty string to a number to force string conversion
+    //alert(typeof(x));
+
+    //question: what happens if we try to multiply two strings
+    //alert("Hello" * "World");
+
+    //example of % (mod)
+    //% gives us the remainder of division.  This says what is the remainder
+    //of 11 / 4
+    alert(11 % 4);
+
+    //example of ++
+    x = 5;
+    x = x + 1;
+    x++; //this does the same as above
+    alert(x);
+
+    //example of --
+    x--;
+
+</script>
