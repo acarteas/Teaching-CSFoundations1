@@ -27,7 +27,7 @@ test('Multipliation Test', async t => {
     await t
         .typeText(Selector('#leftOperand'), '5')
         .typeText(Selector('#rightOperand'), '3')
-        .click(Selector('#subButton'))
+        .click(Selector('#mulButton'))
         .expect(Selector('#output').textContent).eql("5 * 3 = 15")
         .expect(Selector('#leftOperand').value).eql("15")
         .expect(Selector('#rightOperand').value).eql("");
@@ -37,7 +37,7 @@ test('Division Test', async t => {
     await t
         .typeText(Selector('#leftOperand'), '10')
         .typeText(Selector('#rightOperand'), '2')
-        .click(Selector('#subButton'))
+        .click(Selector('#divButton'))
         .expect(Selector('#output').textContent).eql("10 * 2 = 5")
         .expect(Selector('#leftOperand').value).eql("5")
         .expect(Selector('#rightOperand').value).eql("");
