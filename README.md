@@ -18,3 +18,4 @@ for JavaScript programming and Visual Studio 2017 for C++ programming.  Visual S
 
  ## Grades
  Course grades will be published on [Canvas](https://canvas.humboldt.edu).
+
