@@ -18,7 +18,7 @@ test('Subtraction Test', async t => {
         .typeText(Selector('#leftOperand'), '1')
         .typeText(Selector('#rightOperand'), '2')
         .click(Selector('#subButton'))
-        .expect(Selector('#output').textContent).eql("1 + 2 = -1")
+        .expect(Selector('#output').textContent).eql("1 - 2 = -1")
         .expect(Selector('#leftOperand').value).eql("-1")
         .expect(Selector('#rightOperand').value).eql("");
 });
@@ -38,7 +38,7 @@ test('Division Test', async t => {
         .typeText(Selector('#leftOperand'), '10')
         .typeText(Selector('#rightOperand'), '2')
         .click(Selector('#divButton'))
-        .expect(Selector('#output').textContent).eql("10 * 2 = 5")
+        .expect(Selector('#output').textContent).eql("10 / 2 = 5")
         .expect(Selector('#leftOperand').value).eql("5")
         .expect(Selector('#rightOperand').value).eql("");
 });

@@ -19,6 +19,56 @@
 
    //notes for today:
    //https://www.w3schools.com/graphics/canvas_intro.asp
+
+    //grab a reference to our canvas
+    var canvas = document.getElementById("myCanvas");
+    var max_width = canvas.width;
+    var max_height = canvas.height;
+
+    //grab a drawing context from our canvas
+    var context = canvas.getContext("2d");
+
+    //draw a red rectangle
+    context.fillStyle = "rgb(255,0,0)"; //pick the color of our marker
+
+    //input parameters: starting x, starting y, width, height
+    //context.fillRect(0, 0, 150, 75);
+
+    //challenge: prompt user for size and color
+    //var rectangle_width = Number(prompt("Enter width: "));
+    //var rectangle_height = Number(prompt("Enter height: "));
+    //var rectangle_color = prompt("Enter a color: ");
+
+    //From rectangle_color, we expect XX,YY,ZZ. Need to convert into
+    //rgb(XX,YY,ZZ)
+    //var rectangle_color = "rgb(" + rectangle_color + ")";
+    //context.fillStyle = rectangle_color;
+    //context.fillRect(0, 0, rectangle_width, rectangle_height);
+    
+    //draw text
+    context.font = "45px Arial";
+    context.fillStyle = "rgb(0,100,0)";
+    context.textAlign = "center";
+    context.fillText("Hello, World", max_width / 2, max_height / 2);
+
+    var x = 0;
+    var y = 0;
+    function renderLoop()
+    {
+        //ask for a new page in our flip book
+        context.clearRect(0, 0, max_width, max_height);
+
+        context.font = "45px Arial";
+        context.fillStyle = "rgb(0,100,0)";
+        context.textAlign = "center";
+        context.fillText("Hello, World", x, y);
+        x++;
+        y++;
+
+        window.requestAnimationFrame(renderLoop);
+    }
+    renderLoop();
+
    
 </script>
 
