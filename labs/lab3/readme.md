@@ -1,4 +1,4 @@
-# CS 111 Lab 1
+# CS 111 Lab 3
 In this lab, you will use HackerRank, an online coding platform, to complete the following
 programming tasks.
 
