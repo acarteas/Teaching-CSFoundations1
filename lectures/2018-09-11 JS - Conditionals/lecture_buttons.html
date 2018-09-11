@@ -2,18 +2,18 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Hello, World!</title>
     <style>
     </style>
 </head>
-<body>
-   <form id="ExampleForm">
+<body >
+   <form id="ColorForm">
       <h1>What is your favorite color?</h1>
-         <input id="RedRadio" type="radio" name="ColorSelect" value="red" />
+         <input id="RedRadio" type="checkbox" name="ColorSelect" value="red" />
          <label for="RedRadio">Red</label>
-         <input id="GreenRadio" type="radio" name="ColorSelect" value="green" />
+         <input id="GreenRadio" type="checkbox" name="ColorSelect" value="green" />
          <label for="GreenRadio">Green</label>
-         <input id="BlueRadio" type="radio" name="ColorSelect" value="blue" />
+         <input id="BlueRadio" type="checkbox" name="ColorSelect" value="blue" />
          <label for="BlueRadio">Blue</label>
          <br />
          <button type="submit">Submit</button>
@@ -21,7 +21,163 @@
    <div id="ColorDiv" style="height:100px; width:100px"></div>
 <script>
 
-</script>
+    /*General format for a logical expression:
+    if(<expression>)
+    {
+       <code that will execute if expression is true>
+    }
 
+    Expressions must always return a Boolean result
+    Boolean means True or False
+    Example conditional expressions:
+    x === 3 //Evaluates to true when x is equal 3, false otherwise
+    x >=  3 //Evaluates to true when x is greater than or equal to 3
+    x >   3 //Evaluates to true when x is greater than 3
+    x <=  3 //Evaluates to true when x is less than or equal to 3
+    x <   3 //Evaluates to true when x is less than 3
+    x !== 3 //Evaluates to true when x is not equal to 3
+
+    Note: this can be flipped
+    3 === x
+
+    Every logical expression must have a left side,
+    a comparison operator, and a right side
+    */
+
+    //Goal #1: show the appropriate color based on user selection
+    var form = document.getElementById("ColorForm");
+    var red_radio = document.getElementById("RedRadio");
+    var green_radio = document.getElementById("GreenRadio");
+    var blue_radio = document.getElementById("BlueRadio");
+    var result = document.getElementById("ColorDiv");
+
+    //listen for the form to be submitted
+    form.addEventListener("submit", function(evt){
+
+      //tell form not to submit
+      evt.preventDefault();
+
+      //Version #1
+      /*
+      //Is the red radio button checked?
+      if(red_radio.checked === true)
+      {
+         //result.style.backgroundColor = "rgb(255,0,0)";
+         document.body.style.backgroundColor = "rgb(255,0,0)";
+      }
+      if(green_radio.checked === true)
+      {
+         document.body.style.backgroundColor = "rgb(0,255,0)";
+      }
+      if(blue_radio.checked === true)
+      {
+         document.body.style.backgroundColor = "rgb(0,0,255)";
+      }
+      */
+
+      /*
+      IF/ELSE block:
+      if(<expression>)
+      {
+         <code that executes if expression is true>
+      }
+      else
+      {
+         <code that executes if expression is false>
+      }
+
+      Cascading IF/ELSE block
+      if(<expression>)
+      {
+
+      }
+      else if(<a different expression>)
+      {
+
+      }
+      <as many else if's as needed>
+      <optional final else with no expression>
+
+      An else on a cascading IF/ELSE block is a "catch all"
+      */
+      //Version #2
+      /*
+      //Is the red radio button checked?
+      if(red_radio.checked === true)
+      {
+         //result.style.backgroundColor = "rgb(255,0,0)";
+         document.body.style.backgroundColor = "rgb(255,0,0)";
+      }
+      else if(green_radio.checked === true)
+      {
+         //EVEN IF the green button is checked, this will not run
+         //if the red button is also checked!
+         document.body.style.backgroundColor = "rgb(0,255,0)";
+      }
+      else if(blue_radio.checked === true)
+      {
+         document.body.style.backgroundColor = "rgb(0,0,255)";
+      }
+      else
+      {
+         document.body.style.backgroundColor = "rgb(255,255,255)";
+      }
+      */
+
+      //Is the red radio button checked?
+      if(red_radio.checked === true)
+      {
+         //Any code in here ONLY executes when red is checked
+         if(green_radio.checked === true)
+         {
+            //Any code in here ONLY executes when green is checked
+            if(blue_radio.checked === true)
+            {
+               //blue checked
+               document.body.style.backgroundColor = "rgb(255,255,255)";
+            }
+            else
+            {
+               //blue not checked
+               document.body.style.backgroundColor = "rgb(255,255,0)";
+            }
+         }
+         else
+         {
+            //Red is checked, but green is not
+            if(blue_radio.checked === true)
+            {
+               document.body.style.backgroundColor = "rgb(255,0,255)";
+            }
+            else
+            {
+               document.body.style.backgroundColor = "rgb(255,0,0)";
+            }
+         }
+      }
+      else if(green_radio.checked === true)
+      {
+         //Green is checked.  Red is not checked.
+         if(blue_radio.checked === true)
+         {
+            document.body.style.backgroundColor = "rgb(0,255,255)";
+         }
+         else
+         {
+            document.body.style.backgroundColor = "rgb(0,255,0)";
+         }
+      }
+      else if(blue_radio.checked === true)
+      {
+         //Both red and green are not checked.
+         document.body.style.backgroundColor = "rgb(0,0,255)";
+      }
+      else
+      {
+         //nothing is checked
+         document.body.style.backgroundColor = "rgb(100,100,100)";
+      }
+    });
+</script>
 </body>
 </html>
