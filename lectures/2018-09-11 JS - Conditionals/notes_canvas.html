@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <title></title>
+   <style>
+      * {
+         padding: 0;
+         margin: 0;
+      }
+
+      canvas {
+         background: #eee;
+         display: block;
+         margin: 0 auto;
+         margin-top: 15px;
+      }
+   </style>
+</head>
+
+<body>
+
+   <canvas id="myCanvas" width="480" height="320"></canvas>
+
+   <script>
+
+      //grab a reference to our canvas
+      var canvas = document.getElementById("myCanvas");
+      var max_width = canvas.width;
+      var max_height = canvas.height;
+
+      //grab a drawing context from our canvas
+      var context = canvas.getContext("2d");
+
+      var circleOne = { width: 25, y: 100, x: 100, fillStyle: "rgb(0,0,255)" };
+
+      //draw circle 
+      var circle_width = 25;
+      var circle_y = 100;
+      var circle_x = 100;
+      context.fillStyle = circleOne.fillStyle;
+      context.beginPath();
+      context.arc(circleOne.x,
+         circleOne.y,
+         circleOne.width / 2,
+         0,
+         Math.PI * 2,
+         true
+      );
+      context.fill();
+
+   </script>
+
+</body>
+
+</html>

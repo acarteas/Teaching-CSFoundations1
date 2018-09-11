@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; margin-top: 15px;}
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<script>
+
+   //notes for today:
+   //https://www.w3schools.com/graphics/canvas_intro.asp
+
+    //grab a reference to our canvas
+    var canvas = document.getElementById("myCanvas");
+    var max_width = canvas.width;
+    var max_height = canvas.height;
+
+    //grab a drawing context from our canvas
+    var context = canvas.getContext("2d");
+    
+    //draw text
+    context.font = "45px Arial";
+    context.fillStyle = "rgb(0,100,0)";
+    context.textAlign = "center";
+    context.fillText("Hello, World", max_width / 2, max_height / 2);
+
+    var x = 0;
+    var y = 0;
+    function renderLoop()
+    {
+        //ask for a new page in our flip book
+        context.clearRect(0, 0, max_width, max_height);
+
+        context.font = "45px Arial";
+        context.fillStyle = "rgb(0,100,0)";
+        context.textAlign = "center";
+        context.fillText("Hello, World", x, y);
+        x++;
+        y++;
+
+        window.requestAnimationFrame(renderLoop);
+    }
+    renderLoop();
+
+   
+</script>
+
+</body>
+</html>
