@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Liquor Store</h1>
+        What is your age? <input type="text" id="AgeTextBox" />
+        <button type="button" id="VerifyButton">Verify</button>
+        <div id="VerifyOutputText"></div>
+    </div>
+
+    <div>
+       <h1>Coin Flipper</h1>
+       <button type="button" id="CoinFlipButton">Filp Coin</button>
+       <div id="CoinFlipOutput"></div>
+    </div>
+
+    <div>
+       <h1>Rock, Paper, Scissors</h1>
+       Select a weapon: 
+       <select id="RpsWeapon">
+         <option value="0">Rock</option>
+         <option value="1">Paper</option>
+         <option value="2">Scissors</option>
+       </select>
+       <button type="button" id="RpsButton">Play!</button>
+       <div id="RpsOutput"></div>
+    </div>
+<script>
+   
+   //Validate age check
+   var verify_button = document.getElementById("VerifyButton");
+      verify_button.addEventListener("click", function(evt){
+         var age_text = document.getElementById("AgeTextBox");
+         var output = document.getElementById("VerifyOutputText");
+         var age = age_text.value;
+
+         //remember, all user input comes in to JS as a string
+         age = Number(age); //convert age to a number
+
+         if(age >= 21)
+         {
+            output.innerHTML = "Here's some booze for you";
+         }
+         else
+         {
+            output.innerHTML = "No booze for you.";
+         }
+   });
+
+   //Example #2: code that will flip a coin
+   var coin_flip_button = document.getElementById("CoinFlipButton");
+   coin_flip_button.addEventListener("click", function(evt){
+
+      //Random function in JS generates a decimal number between 0 and 1
+      var flip = Math.random() * 2; //we multiply by 2 because we have 2
+                                    //possibilities
+      flip = Math.floor(flip);      //after we multiply, we floor
+      var output = document.getElementById("CoinFlipOutput");
+      
+      //Class question === vs ==.
+      //== is a "loose" comparison in JS only types and values can "almost" match
+      //===is a "strict" comparison types and values must perfectly match
+      //alert(0 == "0");
+      //alert(0 === "0");
+      if(flip === 0)
+      {
+         output.innerHTML += "tails <br />";
+      }
+      else
+      {
+         output.innerHTML += "heads <br />";
+      }
+   });
+
+   //Example #3: Rock, Paper, Scissors
+   var rps_button = document.getElementById("RpsButton");
+   rps_button.addEventListener("click", function(evt){
+      var output = document.getElementById("RpsOutput");
+      var user_weapon = document.getElementById("RpsWeapon").value;
+      user_weapon = Number(user_weapon);
+
+      //Use RNG to determine computer's pick
+      //0 - Rock
+      //1 - Paper
+      //2 - Scissors
+      var rock = 0;
+      var paper = 1;
+      var scissors = 2;
+      var cpu_weapon = Math.floor(Math.random() * 3); //3 choices
+      var weapon_translations = ["rock", "paper", "scissors"]; //an array in JS
+      output.innerHTML += "CPU chooses " + weapon_translations[cpu_weapon];
+      output.innerHTML += ". result: ";
+      
+      //version 1
+      /*
+      if(cpu_weapon === rock)
+      {
+         if(user_weapon === rock)
+         {
+            output.innerHTML += "tie <br />";
+         }
+         else if(user_weapon === paper)
+         {
+            output.innerHTML += "you win <br />";
+         }
+         else
+         {
+            output.innerHTML += "you lose <br />";
+         }
+      }
+      else if(cpu_weapon === paper)
+      {
+         if(user_weapon === rock)
+         {
+            output.innerHTML += "you lose <br />";
+         }
+         else if(user_weapon === paper)
+         {
+            output.innerHTML += "tie <br />";
+         }
+         else
+         {
+            output.innerHTML += "you win <br />";
+         }
+      }
+      else //scissors
+      {
+         if(user_weapon === rock)
+         {
+            output.innerHTML += "you win <br />";
+         }
+         else if(user_weapon === paper)
+         {
+            output.innerHTML += "you lose <br />";
+         }
+         else
+         {
+            output.innerHTML += "tie <br />";
+         }
+      }
+      */
+
+     //Version 2 using compound IF statements
+     //A single IF statement can have multiple conditional expressions
+     //if(<expression> <boolean operator> <expression>)
+     //boolean operators: && - AND
+     //                   || - OR
+     //you can chain multiple operators
+     //if(<expression> <op> <expression> <op> <expression>)
+     //Adam's advice try not to use more than 2 ops per IF statement
+     //Generally, stick to 1 or 0
+     /*
+     if(cpu_weapon === user_weapon)
+     {
+        output.innerHTML += "tie <br />";
+     }
+     else if(cpu_weapon === rock && user_weapon === paper)
+     {
+        output.innerHTML += "you win <br />";
+     }
+     else if(cpu_weapon === rock && user_weapon === scissors)
+     {
+        output.innerHTML += "you lose <br />";
+     }
+     else if(cpu_weapon === paper && user_weapon === rock)
+     {
+        output.innerHTML += "you lose <br />";
+     }
+     else if(cpu_weapon === paper && user_weapon === scissors)
+     {
+        output.innerHTML += "you win <br />";
+     }
+     else if(cpu_weapon === scissors && user_weapon === rock)
+     {
+        output.innerHTML += "you win <br />";
+     }
+     else if(cpu_weapon === scissors && user_weapon === paper)
+     {
+        output.innerHTML += "you lose <br />";
+     }
+     */
+
+    //Version 3: zero IF statements
+    var results =[
+       ["tie", "you win", "you lose"],
+       ["you lose", "tie", "you win"],
+       ["you win", "you lose", "tie"]
+    ];
+    output.innerHTML += results[cpu_weapon][user_weapon] += "<br />";
+
+   });
+
+</script>
+</body>
+</html>
