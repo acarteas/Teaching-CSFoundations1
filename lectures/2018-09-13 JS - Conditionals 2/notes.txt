@@ -1,0 +1,110 @@
+"""
+Agenda: cover examples below 
+        Use RNG to change ball speed on bounce.  Add 2nd ball, give random colors
+  	Try to get balls to react to collision
+	Class challenge: Write a statement that check to see if the guess is a 3 digit number or -1:
+
+        
+Conditionals allow us to ask questions of the current program state
+
+In Python, we write questions using IF statements
+format for IF statement:
+if <variable or value> <relational operator> <variable or value>:
+
+basic relational operators:
+
+x == y #test of equality (is x equal to y?)
+x > y  #is x greater than y?
+x >= y #is x greater than or equal to y?
+x < y  #is x less than y?
+x <= y #is x less than or equal to?
+x != y #is x not equal to y?
+
+Note, the above are all "yes / no" questions.
+These are Boolean operations.
+"""
+
+#example #1: Liquor store
+age = int(input("Enter your age: "))
+if age >= 21:
+    print("Here's your booze")
+if age < 21:
+    print("No booze for you")
+
+#example #2: heads or tails
+#0 = heads
+#1 = tails
+from random import *
+result = randint(0, 1)
+if result == 0:
+    print("heads")
+if result == 1:
+    print("tails")
+
+#random with three numbers
+#IF 0, say "A"
+#IF 1, say "B"
+#IF 2, say "C"
+result = randint(0, 1)
+if result != 0:
+    print("B")
+if result != 1:
+    print("C")
+if result != 2:
+    print("A")
+
+#It is possible to group related IF statements
+#Criteria: Are the results mutually exclusive?
+#e.g. "Either this OR that"
+result = randint(0, 1)
+if result == 0:
+    print("heads")
+else:
+    print("tails")
+
+#Another very common case: IF A, If B, else (C)
+#note (these are still mutually exclusive)
+result = randint(0, 2)
+if result == 0:
+    #rock
+    print("rock")
+elif result == 1:
+    #paper
+    print("paper")
+elif result == 2:
+    #scissors
+    print("scissors")
+else:
+    #computer broken
+    print("Something went wrong")
+
+"""
+General IF logic:
+
+if <statement>:
+(optional)elif <statement>:
+(as many as needed)elif <statement>:
+(optional)else:
+"""
+
+#Note: once we "hit" an IF block, all other elif and else do not happen
+result = 0
+if result == 0:
+    print("rock1")
+elif result == 1:
+    print("paper")
+elif result == 0:
+    print("rock2")
+
+#we can combine IF statements (nesting) "Nested IF statement"
+#IF you are a student and you're under the age of 24, you get a ski lift
+#discount
+age = int(input("Enter your age:"))
+is_student = input("Are you a student [y/n]: ")
+if is_student == 'y':
+    if age < 24:
+        print("You get a discounted lift ticket.")
+    else:
+        print("Sorry, you are too old")
+else:
+    print("Sorry, the offer is only for students.")
