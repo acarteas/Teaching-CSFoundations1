@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>CS 111 PA #3</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="">
+   <style type="text/css">
+
+      #output{ 
+         max-height: 250px;
+         overflow: auto;
+      }
+   </style>
+   <script src="tiny-turtle.js"></script>
+</head>
+
+<body>
+   <section>
+      <h1>Turtle Canvas</h1>
+      <canvas width="300" height="300" id="TurtleCanvas" style="background-color:#EFEFEF; border: 1px solid black;"></canvas>
+   </section>
+   <section>
+      <h1>Turtle Commands</h1>
+      <textarea cols="40" rows="15" id="TurtleCommands"></textarea>
+      <br />
+      <button id="RunCommandsButton">Run</button>
+   </section>
+   <section>
+         <h1>Results</h1>
+         <div id="Output"></div>
+      </section>
+   <script>
+      var turtle = TinyTurtle(document.getElementById("TurtleCanvas"));
+      var run_button = document.getElementById("RunCommandsButton");
+      var commands_text = document.getElementById("TurtleCommands");
+      var output = document.getElementById("Output");
+      run_button.addEventListener("click", function(evt){
+         var commands = commands_text.value;
+         commands = commands.split("\n");
+         
+         //PA #3 Command will be either a direction
+         //e.g. (F)oward, (B)ack, (R)ight, (L)eft
+         //or a distance (e.g. 100)
+         for(let command of commands){
+            
+            //TODO: execute correct turtle commands.
+            turtle.forward(10);
+
+            //TODO: log result to output.  Needs to be updated to
+            //full command (e.g. "Forward(100);")
+            output.innerHTML += command + "<br />";
+         }
+      });
+   </script>
+</body>
+
+</html>
