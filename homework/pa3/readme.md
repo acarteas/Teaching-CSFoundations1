@@ -11,6 +11,8 @@ In this assignment, you use file processing to draw shapes using turtle graphics
 Each command corresponds to one or more turtle graphics commands: forward, right, and left.  Note that back will require two 180 degree rotations: one to move the turtle backwards and another to reset the turtle to the correct heading.  
 
 ## Tips
+* For a tutorial on turtle graphics, see the [Tiny Turtle Tutorial](https://toolness.github.io/tiny-turtle/tutorial/).  
+* The Tiny Turtle library is open source on [Github](https://github.com/toolness/tiny-turtle).  The main github page provides the complete API for the turtle graphics library.
 * Each line contains either a direction or a distance.  The order is always the same: first the direction, then the distance.  Thus, you will need to remember the direction using a variable. 
 * Once you receive a distance, you can then move the turtle.  
 * Remember that you can use the Number() function to convert a string into a number.  What happens when you try to convert a string (e.g. 'F') into a number?  How can you use that information to drive IF statements?
