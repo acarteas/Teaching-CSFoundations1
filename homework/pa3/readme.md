@@ -52,6 +52,92 @@ The above output informs us that we failed 3 of the 5 tests.
 ## Due Date
 You must submit your assignment through Canvas no later than midnight, September 26, 2018.
 
+## Test Cases
+Below, I provide you the two "advanced" test cases that your program must pass:
+
+### Two Squares
+```
+F
+100
+L
+90
+F
+100
+L
+90
+F
+100
+L
+90
+F
+100
+L
+90
+B
+100
+R
+90
+B
+100
+R
+90
+B
+100
+```
+
+### Two Hexagons
+```
+F
+110
+L
+60
+F
+110
+L
+60
+F
+110
+L
+60
+F
+110
+L
+60
+F
+110
+L
+60
+F
+110
+L
+60
+F
+110
+R
+60
+B
+110
+R
+60
+B
+110
+R
+60
+B
+110
+R
+60
+B
+110
+R
+60
+B
+110
+R
+60
+B
+110
+```
+
 ## Grading
-This assignment is worth 30 points.  For each test case that you fail, you
-will have 10 points deducted from your assignment grade.
+This assignment is worth 80 points.  The four simple test cases are worth 10 points and the two advanced test cases are worth 20 points.  
