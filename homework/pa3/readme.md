@@ -1,4 +1,4 @@
-# CS 111 Programming Assignment 2
+# CS 111 Programming Assignment 3
 Data processing with files a common activity performed by a wide variety of disciplines.  For example, a large portion of my dissertation work concerned itself with processing data generated as students completed their homework assignments.  While file processing of that magnitude is beyond the scope of CS 111, this assignment hopes to reinforce practices common in "real" data processing.  Namely, you will be exposed to the practices of looping through data and making decisions based on that data.
 
 In this assignment, you use file processing to draw shapes using turtle graphics.  Write a program that correctly processes the commands (see TODO comments in pa3.html) and moves the turtle based on the content of the turtle.  On each line, there exists either a single character or an integer value.  The characters indicate the direction to move or rotate.  The integer indicates the distance or angle of rotation.  The possible character values are (all upper-case):
