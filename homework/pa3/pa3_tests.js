@@ -7,21 +7,21 @@ test('Forward Test', async t => {
     await t
         .typeText(Selector('#TurtleCommands'), 'F\n100')
         .click(Selector('#RunCommandsButton'))
-        .expect(Selector('#Output').textContent).eql("Forward(100)")
+        .expect(Selector('#Output').textContent).eql("forward(100)")
 });
 
 test('Right Test', async t => {
     await t
     .typeText(Selector('#TurtleCommands'), 'R\n90')
     .click(Selector('#RunCommandsButton'))
-    .expect(Selector('#Output').textContent).eql("Right(90)")
+    .expect(Selector('#Output').textContent).eql("right(90)")
 });
 
 test('Left Test', async t => {
    await t
    .typeText(Selector('#TurtleCommands'), 'L\n90')
    .click(Selector('#RunCommandsButton'))
-   .expect(Selector('#Output').textContent).eql("Left(90)")
+   .expect(Selector('#Output').textContent).eql("left(90)")
 });
 
 
@@ -29,7 +29,7 @@ test('Back Test', async t => {
    await t
    .typeText(Selector('#TurtleCommands'), 'B\n120')
    .click(Selector('#RunCommandsButton'))
-   .expect(Selector('#Output').textContent).eql("Back(120)")
+   .expect(Selector('#Output').textContent).eql("back(120)")
 });
 
 test('Squares Test', async t => {
