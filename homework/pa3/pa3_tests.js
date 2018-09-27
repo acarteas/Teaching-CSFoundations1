@@ -36,14 +36,14 @@ test('Squares Test', async t => {
    await t
    .typeText(Selector('#TurtleCommands'), 'F\n100\nL\n90\nF\n100\nL\n90\nF\n100\nL\n90\nF\n100\nL\n90\nB\n100\nR\n90\nB\n100\nR\n90\nB\n100')
    .click(Selector('#RunCommandsButton'))
-   .expect(Selector('#Output').textContent).eql("forward(100)\nleft(90)\nforward(100)\nleft(90)\nforward(100)\nleft(90)\nforward(100)\nleft(90)\nback(100)\nright(90)\nback(100)\nright(90)\nback(100)")
+   .expect(Selector('#Output').textContent).eql("forward(100)left(90)forward(100)left(90)forward(100)left(90)forward(100)left(90)back(100)right(90)back(100)right(90)back(100)")
 });
 
 test('Hex Test', async t => {
    await t
    .typeText(Selector('#TurtleCommands'), 'F\n110\nL\n60\nF\n110\nL\n60\nF\n110\nL\n60\nF\n110\nL\n60\nF\n110\nL\n60\nF\n110\nL\n60\nF\n110\nR\n60\nB\n110\nR\n60\nB\n110\nR\n60\nB\n110\nR\n60\nB\n110\nR\n60\nB\n110\nR\n60\nB\n110')
    .click(Selector('#RunCommandsButton'))
-   .expect(Selector('#Output').textContent).eql("forward(110)\nleft(60)\nforward(110)\nleft(60)\nforward(110)\nleft(60)\nforward(110)\nleft(60)\nforward(110)\nleft(60)\nforward(110)\nleft(60)\nforward(110)\nright(60)\nback(110)\nright(60)\nback(110)\nright(60)\nback(110)\nright(60)\nback(110)\nright(60)\nback(110)\nright(60)\nback(110)")
+   .expect(Selector('#Output').textContent).eql("forward(110)left(60)forward(110)left(60)forward(110)left(60)forward(110)left(60)forward(110)left(60)forward(110)left(60)forward(110)right(60)back(110)right(60)back(110)right(60)back(110)right(60)back(110)right(60)back(110)right(60)back(110)")
 });
 
 
