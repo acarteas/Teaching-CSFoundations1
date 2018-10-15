@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; margin-top: 15px;}
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+<div id="MouseCoords"></div>
+<script>
+
+   //Notes:
+   //https://progur.com/2016/10/procedural-generation-create-fractal-trees-javascript.html
+
+
+   //Agenda:
+   //Use a loop to create N circles
+   //add a buttton to add and remove additional circles
+   //Use a loop to render circles (for...of loops)
+   //Count number of ball collisions
+
+
+    //grab a reference to our canvas
+    var canvas = document.getElementById("myCanvas");
+    var max_width = canvas.width;
+    var max_height = canvas.height;
+
+    //grab a drawing context from our canvas
+    var context = canvas.getContext("2d");
+    
+    //tracks mouse position
+    var mouse_x = 0;
+    var mouse_y = 0;
+
+    //How to define a complex type in JavaScript
+    var first_circle = {
+
+        //format for defining properties:
+        //<name>: <value>
+        width: 25,
+        x: 25,
+        y: 25,
+        dx: 1,
+        dy: 1,
+        fillStyle: "rgb(0,0,255)"
+    };
+
+    var second_circle = {
+      //format for defining properties:
+      //<name>: <value>
+      width: 25,
+      x: 200,
+      y: 150,
+      dx: 1,
+      dy: 1,
+      fillStyle: "rgb(0,255,0)"
+      };
+
+      var third_circle = {
+      //format for defining properties:
+      //<name>: <value>
+      width: 25,
+      x: 25,
+      y: 200,
+      dx: 1,
+      dy: 1,
+      fillStyle: "rgb(255,0,0)"
+      };
+
+      var fourth_circle = {
+      //format for defining properties:
+      //<name>: <value>
+      width: 25,
+      x: 300,
+      y: 125,
+      dx: 1,
+      dy: 1,
+      fillStyle: "rgb(255,255,0)"
+      };
+
+   function renderLoop()
+   {
+      //ask for a new page in our flip book
+      context.clearRect(0, 0, max_width, max_height);
+      draw_circle(first_circle);
+      draw_circle(second_circle);
+      draw_circle(third_circle);
+      draw_circle(fourth_circle);
+      detect_collision(second_circle, first_circle);
+      detect_collision(first_circle, third_circle);
+      detect_collision(second_circle, third_circle);
+      detect_collision(first_circle, fourth_circle);
+      detect_collision(second_circle, fourth_circle);
+      detect_collision(third_circle, fourth_circle);
+
+      //have first circle follow the mouse
+      if(mouse_x > first_circle.x)
+       {
+          first_circle.dx = 1;
+       }
+       else if(mouse_x < first_circle.x)
+       {
+          first_circle.dx = -1;
+       }
+       else
+       {
+          first_circle.dx = 0;
+       }
+
+       if(mouse_y > first_circle.y)
+       {
+          first_circle.dy = 1;
+       }
+       else if(mouse_y < first_circle.y)
+       {
+          first_circle.dy = -1;
+       }
+       else
+       {
+          first_circle.dy = 0;
+       }
+
+      window.requestAnimationFrame(renderLoop);
+   }
+
+   function detect_collision(first_circle, second_circle)
+   {
+      //check for collision between first and second circle
+      var dx = first_circle.x - second_circle.x;
+      var dy = first_circle.y - second_circle.y;
+      var distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < first_circle.width / 2 + second_circle.width / 2) {
+         
+         //reverse direction
+         if((first_circle.dx > 0 && second_circle.dx < 0)
+         || (first_circle.dx < 0 && second_circle.dx > 0)
+         )
+         {
+            first_circle.dx *= -1;
+            second_circle.dx *= -1;
+         }
+         if((first_circle.dy > 0 && second_circle.dy < 0)
+         || (first_circle.dy < 0 && second_circle.dy > 0)
+         ){
+            first_circle.dy *= -1;
+            second_circle.dy *= -1;
+         }
+      }
+   }
+
+    function draw_circle(some_circle){
+       //draw circle
+       context.beginPath();
+        context.fillStyle = some_circle.fillStyle;
+        context.arc(
+         some_circle.x, 
+         some_circle.y, 
+         some_circle.width/2, 
+            0, 
+            Math.PI * 2, 
+            true);
+        context.fill();
+
+        //move circle
+        some_circle.x += some_circle.dx;
+        some_circle.y += some_circle.dy;
+        var boundary = some_circle.width / 2;
+        if(max_height - boundary < some_circle.y)
+        {
+         some_circle.dy *= -1;
+        }
+        else if(0 + boundary > some_circle.y)
+        {
+         some_circle.dy *= -1;
+        }
+
+        if(max_width - boundary < some_circle.x)
+        {
+         some_circle.dx *= -1;
+        }
+        else if(0 + boundary > some_circle.x)
+        {
+         some_circle.dx *= -1;
+        }
+    }
+
+    canvas.addEventListener("mousemove", function(evt){
+       var coords_text = document.getElementById("MouseCoords");
+
+       var rect = canvas.getBoundingClientRect();
+       mouse_x = evt.clientX - rect.left;
+       mouse_y = evt.clientY - rect.top;
+       
+    });
+
+    renderLoop();
+
+   
+</script>
+
+</body>
+</html>
