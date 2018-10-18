@@ -9,8 +9,161 @@
 </head>
 <body>
       <canvas width="600" height="600" id="TurtleCanvas" style="background-color:#EFEFEF; border: 1px solid black;"></canvas>
+      <div id="output">
+
+      </div>
 <script>
    var turtle = TinyTurtle(document.getElementById("TurtleCanvas"));
+   var output = document.getElementById("output");
+   //grab a reference to our canvas
+   var turtle_canvas = document.getElementById("TurtleCanvas");
+
+    //grab a drawing context from our canvas
+    var context = turtle_canvas.getContext("2d");
+   /*
+      Functions are the last "major component" of complex programs.
+      Components learned thus far:
+         Commands - allow us to perform actions
+         Logic - allows us to make choices
+         Loops - allows us to efficiently implement reptition
+      
+      Functions also allow us to reduce reptition.  They also act as 
+      an abstraction mechanism.
+      C++ functions
+         cout - function that outputs to the screen
+      JS functions
+         Math.random()
+
+      In comparison to CS functions, math functions express a continuous
+      relationship.  E.g.
+         f(x) = 5 * x; (this represent an entire line going to infinity)
+      In CS, functions represent a single-instance relationship
+         f(x) = 5 * x; (a single point in tme)
+      
+      anatomy of a JS function
+      function <function name>(<one or more input parameters separated by commas>)
+      {
+
+      }
+      (example below)
+   */
+   function roll_die(num_sides)
+   {
+      var result = Math.ceil(Math.random() * num_sides); //should be 1 to num_sides?
+      
+      //note: changing input parameter values won't change the original
+      //variable's value....
+      //UNLESS the input parameter is of type object
+      num_sides += 5;
+      return result;
+   }
+
+   //roll 10 dice
+   /*
+   var dice = [4, 6, 8, 10, 12, 20];
+   for(let die of dice)
+   {
+      for(var i = 0; i < 10; i++)
+      {
+         output.innerHTML += roll_die(die) + "<br />";
+      }
+      output.innerHTML += "<h1>Die Size: " + die + "</h1>"; 
+   }
+   */
+
+   //draw a square usingin turtle graphics (the hard way)
+   /*
+   turtle.forward(100);
+   turtle.right(90);
+   turtle.forward(100);
+   turtle.right(90);
+   turtle.forward(100);
+   turtle.right(90);
+   turtle.forward(100);
+   turtle.right(90);
+   */
+
+   //drawing a square using a loop
+   /*
+   for(var i = 0; i < 4; i++)
+   {
+      turtle.forward(100);
+      turtle.right(90);
+   }
+   */
+
+   //drawing a square using a function
+   function draw_shape(side_length, num_sides)
+   {
+      for(var i = 0; i < num_sides; i++)
+      {
+         turtle.forward(side_length);
+         turtle.right(360 / num_sides);
+      }
+   }
+
+   function draw_square(side_length)
+   {
+      draw_shape(side_length, 4);
+   }
+
+   function draw_triangle(side_length)
+   {
+      draw_shape(side_length, 3);
+   }
+
+   function draw_hex(side_length)
+   {
+      draw_shape(side_length, 6);
+   }
+
+   function draw_circle(side_length)
+   {
+      draw_shape(360  / side_length, 360);
+   }
+
+   function make_random_shapes(count)
+   {
+      for(var i = 0; i < count; i++)
+      {
+         var result = roll_die(3);
+         if(result === 1)
+         {
+            draw_square((1+i) * 10);
+         }
+         else if(result === 2)
+         {
+            draw_hex((i + 1) * 10);
+         }
+         else
+         {
+            draw_triangle((i + 1) * 10);
+         }
+         turtle.right(5);
+      }
+   }
+
+   function animate()
+   {
+      //ask for a new page in our flip book
+      context.clearRect(0, 0, 600, 600);
+
+      make_random_shapes(100);
+      window.requestAnimationFrame(animate);
+   }
+
+   //draw one square
+   //draw_square(150);
+   animate();
+   //make_random_shapes(100);
+   /*
+   for(var i = 3; i < 300; i += 20)
+   {
+      draw_shape(i, i * 3);
+      //turtle.right(360 / i);
+      //turtle.forward(10);
+   }
+   */
 </script>
 </body>
 </html>
