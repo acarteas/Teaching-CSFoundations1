@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; margin-top: 15px;}
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+<button id="addBallButton">Add Ball</button>
+<button id="removeBallButton">Remove Ball</button>
+<div id="MouseCoords"></div>
+<script>
+
+   //Notes:
+   //https://progur.com/2016/10/procedural-generation-create-fractal-trees-javascript.html
+
+   //Agenda:
+   //Use a loop to create N circles
+   //add a buttton to add and remove additional circles
+   //Use a loop to render circles (for...of loops)
+   //Count number of ball collisions
+
+   //WHILE Loops in JS are exactly the same as C++
+   //"basic" FOR loops are also nearly identical
+   //for(var i = 0; i < N; i++)
+
+    //grab a reference to our canvas
+    var canvas = document.getElementById("myCanvas");
+    var max_width = canvas.width;
+    var max_height = canvas.height;
+
+    //grab a drawing context from our canvas
+    var context = canvas.getContext("2d");
+    
+    //tracks mouse position
+    var mouse_x = 0;
+    var mouse_y = 0;
+
+    //ensure that all balls have a unique ID
+    var ball_id_counter = 0;
+
+    //use an arry and a loop to create lots of balls
+    var balls = new Array();
+    for(var i = 0; i < 5; i++)
+    {
+       var ball = createBall();
+       balls.push(ball);
+    }
+
+   //use buttons to add and remove new balls from the screen
+   var add_button = document.getElementById("addBallButton");
+   var remove_button = document.getElementById("removeBallButton");
+
+   add_button.addEventListener("click", function(evt){
+      var ball = createBall();
+      balls.push(ball);
+   });
+   remove_button.addEventListener("click", function(evt){
+      balls.pop();
+   });
+   canvas.addEventListener("click", function(evt){
+      var rect = canvas.getBoundingClientRect();
+      mouse_x = evt.clientX - rect.left;
+      mouse_y = evt.clientY - rect.top;
+      var ball = createBall();
+      ball.x = mouse_x;
+      ball.y = mouse_y;
+      balls.push(ball);
+   });
+
+   function createBall()
+   {
+      var red = Math.ceil(Math.random() * 255);
+       var green = Math.ceil(Math.random() * 255);
+       var blue = Math.ceil(Math.random() * 255);
+       var ball = {
+          id: ball_id_counter,
+          width: 25,
+          x: Math.ceil(Math.random() * max_width),
+          y: Math.ceil(Math.random() * max_height),
+          dx: 1,
+          dy: 1, 
+          fillStyle: "rgb("+ red +"," + green + "," + blue + ")",
+          collisions: {}
+      };
+      ball_id_counter++;
+      return ball;
+   }
+   function renderLoop()
+   {
+      //ask for a new page in our flip book
+      context.clearRect(0, 0, max_width, max_height);
+
+      //C++ way (and old JS way).  Fine to do.
+      /*
+      for(var i = 0; i < balls.length; i++)
+      {
+         balls[i];
+      }
+      */
+      for(let ball of balls)
+      {
+         draw_circle(ball);
+      }
+
+      /*
+      0: 1, 2, 3
+      1: 2, 3
+      2: 3
+      3
+      */
+      for(var i = 0; i < balls.length; i++)
+      {
+         for(var j = i + 1; j < balls.length; j++)
+         {
+            detect_collision(balls[i], balls[j]);
+         }
+      }
+
+      window.requestAnimationFrame(renderLoop);
+   }
+
+   function reverse_direction(direction, speed)
+   {
+      if(direction < 0)
+      {
+         return speed;
+      }
+      else
+      {
+         return -speed;
+      }
+   }
+
+   function detect_collision(first_circle, second_circle)
+   {
+      //check for collision between first and second circle
+      var dx = first_circle.x - second_circle.x;
+      var dy = first_circle.y - second_circle.y;
+      var distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < first_circle.width / 2 + second_circle.width / 2) {
+         
+         //not already collided?
+         if(first_circle.collisions[second_circle.id] === undefined 
+            && second_circle.collisions[first_circle.id] === undefined)
+         {
+            first_circle.collisions[second_circle.id] = second_circle;
+            second_circle.collisions[first_circle.id] = first_circle;
+            var first_new_speed = Math.ceil(Math.random() * 5);
+            var second_new_speed = Math.ceil(Math.random() * 5);
+
+            //reverse direction
+            if((first_circle.dx > 0 && second_circle.dx < 0)
+            || (first_circle.dx < 0 && second_circle.dx > 0)
+            )
+            {
+               first_circle.dx = reverse_direction(first_circle.dx, first_new_speed);
+               second_circle.dx = reverse_direction(second_circle.dx, second_new_speed);
+            }
+            else if((first_circle.dy > 0 && second_circle.dy < 0)
+            || (first_circle.dy < 0 && second_circle.dy > 0)
+            ){
+               first_circle.dy = reverse_direction(first_circle.dy, first_new_speed);
+               second_circle.dy = reverse_direction(second_circle.dy, second_new_speed);
+            }
+         }
+      }
+      else
+      {
+         first_circle.collisions[second_circle.id] = undefined;
+         second_circle.collisions[first_circle.id] = undefined;
+      }
+   }
+
+    function draw_circle(some_circle){
+       //draw circle
+       context.beginPath();
+        context.fillStyle = some_circle.fillStyle;
+        context.arc(
+         some_circle.x, 
+         some_circle.y, 
+         some_circle.width/2, 
+            0, 
+            Math.PI * 2, 
+            true);
+        context.fill();
+
+        //move circle
+        some_circle.x += some_circle.dx;
+        some_circle.y += some_circle.dy;
+        var boundary = some_circle.width / 2;
+        if(max_height - boundary < some_circle.y)
+        {
+         some_circle.dy *= -1;
+        }
+        else if(0 + boundary > some_circle.y)
+        {
+         some_circle.dy *= -1;
+        }
+
+
+        if(max_width - boundary < some_circle.x)
+        {
+         some_circle.dx *= -1;
+        }
+        else if(0 + boundary > some_circle.x)
+        {
+         some_circle.dx *= -1;
+        }
+    }
+
+    canvas.addEventListener("mousemove", function(evt){
+       var coords_text = document.getElementById("MouseCoords");
+
+       var rect = canvas.getBoundingClientRect();
+       mouse_x = evt.clientX - rect.left;
+       mouse_y = evt.clientY - rect.top;
+       
+    });
+
+    renderLoop();
+
+   
+</script>
+
+</body>
+</html>
