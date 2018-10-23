@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+    </style>
+</head>
+<body>
+   <h1>BlackJack!</h1>
+   <div style="display:flex;">
+      <div>
+         <button id="HitButton">Hit</button>
+         <button id="StayButton">Stay</button>
+         <button id="NewGameButton">New Game</button>
+      </div>
+      <div style="flex-grow:2; padding-left:2rem;">
+         <h2 style="padding:0; margin:0;">Player History</h2>
+         <div id="PlayerHistory">
+
+         </div>
+      </div>
+      <div style="flex-grow:2; padding-left:2rem;">
+            <h2 style="padding:0; margin:0;">Dealer History</h2>
+            <div id="DealerHistory">
+   
+            </div>
+         </div>
+   </div>
+<script>
+
+   //call to update the screen when dealing a player a new card
+   function dealToPlayer(card_value)
+   {
+      var player_history = document.getElementById("PlayerHistory");
+      var text = "Player is dealt a " + card_value + "<br />";
+      player_history.innerHTML += text;
+   }
+
+   //call to set the game over message
+   function setGameOver(did_player_win)
+   {
+      var player_history = document.getElementById("PlayerHistory");
+      if(did_player_win === true)
+      {
+         player_history.innerHTML += '<h1 style="color: green;">You Win!</h1>';
+      }
+      else
+      {
+         player_history.innerHTML += '<h1 style="color: red;">You Lose!</h1>';
+      }
+   }
+
+   //call to update the screen when dealing dealer a new card
+   function dealToDealer(card_value)
+   {
+      var dealer_history = document.getElementById("DealerHistory");
+      var text = "Dealer is dealt a " + card_value + "<br />";
+      dealer_history.innerHTML += text;
+   }
+
+   //call to reset the game text on the screen
+   function resetText()
+   {
+      var player_history = document.getElementById("PlayerHistory");
+      var dealer_history = document.getElementById("DealerHistory");
+      player_history.innerHTML = "";
+      dealer_history.innerHTML = "";
+   }
+
+   //this gets called when the hit button is clicked.  TODO: add your code!
+   document.getElementById("HitButton").addEventListener("click", function(evt){
+      
+      //test function call.  Remove in your final game.
+      dealToPlayer(5);
+   });
+
+   //this gets called when the stay button is clicked.  TODO: add your code!
+   document.getElementById("StayButton").addEventListener("click", function(evt){
+      
+      //test function calls.  Remove in your final game.
+      dealToDealer(7);
+      dealToDealer(6);
+      dealToDealer(10);
+      setGameOver(true);
+   });
+
+   //this gets called when the new game button is clicked.  TODO: add your code!
+   document.getElementById("NewGameButton").addEventListener("click", function(evt){
+      
+      //resets the on-screen text.  KEEP in your game!
+      resetText();
+
+   });
+   
+</script>
+</body>
+</html>
