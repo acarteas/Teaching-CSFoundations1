@@ -31,6 +31,93 @@
 
     //grab a drawing context from our canvas
     var context = turtle_canvas.getContext("2d");
+    /*
+    basic function definition in JS
+    function some_function(input1, input2, input3)
+    {
+       var sum = input1 + input2;
+       return sum; //output
+    }
+    */
+
+    //drawing a square using a function
+   function draw_shape(side_length, num_sides, x, y)
+   {
+      if(x !== undefined && y !== undefined)
+      {
+         goto(x, y);
+      }
+      for(var i = 0; i < num_sides; i++)
+      {
+         forward(side_length);
+         right(360 / num_sides);
+      }
+   }
+
+   function draw_square(side_length, x, y)
+   {
+      draw_shape(side_length, 4, x, y);
+   }
+
+   function draw_triangle(side_length)
+   {
+      draw_shape(side_length, 3);
+   }
+
+   function draw_hex(side_length, x, y)
+   {
+      draw_shape(side_length, 6, x, y);
+   }
+
+   function draw_circle(side_length)
+   {
+      draw_shape(360  / side_length, 360);
+   }
+
+   function draw_a_bunch_of_random_shapes()
+   {
+      var x = Math.ceil(Math.random() * 600 - 300);
+      var y = Math.ceil(Math.random() * 600 - 300);
+      var length = Math.ceil(Math.random() * 100 + 4)
+      var num_sides = Math.ceil(Math.random() * 10 + 2);
+      draw_shape(length, num_sides, x, y);
+      setTimeout(draw_a_bunch_of_random_shapes, 250);
+   }
+   //draw_a_bunch_of_random_shapes();
+
+   //goal: draw the same shape across the horizontal axis
+   function draw_across_axis()
+   {
+      var x = -300;
+      var y = -300;
+      for(var i = 0; i < 600/50; i++)
+      {
+         x += 50;
+         y = -300;
+         for(var j = 0; j < 600/50; j++)
+         {
+            y += 50;
+            draw_square(50, x, y);
+         }
+      }
+      
+   }
+   //draw_across_axis();
+
+   document.addEventListener("keypress", function(evt){
+      if(evt.key === 'w')
+      {
+         forward(10);
+      }
+      if(evt.key === 'd')
+      {
+         right(10);
+      }
+      if(evt.key === 'a')
+      {
+         left(10);
+      }
+   });
 
 </script>
 </body>
