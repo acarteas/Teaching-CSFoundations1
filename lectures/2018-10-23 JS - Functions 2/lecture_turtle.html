@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+    </style>
+    <script src="jquery-1.6.4.min.js"></script>
+</head>
+<body>
+      <canvas width="600" height="600" id="turtlecanvas" style="background-color:#EFEFEF; border: 1px solid black;"></canvas>
+      <canvas id="imagecanvas" width="600" height="600" style="display:none"></canvas>
+      <div id="output">
+
+      </div>
+<script src="turtle.js"></script>
+<script> 
+   //new turtle script: https://rawgit.com/wrschneider99/js-turtle/master/turtle.html
+   //Agenda:
+   // PA #5 Q&A
+   // Explain move_turtle function
+   // Write a function to "bounce" turtle off the edge of the screen
+   // Write a function to check to see if we cross path (snake game)
+   // Caesar cipher (lecture.html)
+   
+   var output = document.getElementById("output");
+
+   //grab a reference to our canvas
+   var turtle_canvas = document.getElementById("turtlecanvas");
+
+    //grab a drawing context from our canvas
+    var context = turtle_canvas.getContext("2d");
+
+   function move_turtle()
+   {
+      forward(2);
+      setTimeout(move_turtle, 30);
+
+      //show current turtle x and y position on the screen
+      var turtle_x = Math.ceil(turtle.pos.x);
+      var turtle_y = Math.ceil(turtle.pos.y);
+      output.innerHTML = "(" + turtle_x + ", " + turtle_y + ")";
+   }
+   move_turtle();
+
+   document.addEventListener("keypress", function(evt){
+      if(evt.key === 'w')
+      {
+         forward(10);
+      }
+      if(evt.key === 'd')
+      {
+         right(10);
+      }
+      if(evt.key === 'a')
+      {
+         left(10);
+      }
+   });
+
+</script>
+</body>
+</html>
