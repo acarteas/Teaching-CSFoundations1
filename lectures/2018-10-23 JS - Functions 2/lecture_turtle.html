@@ -10,7 +10,7 @@
 <body>
       <canvas width="600" height="600" id="turtlecanvas" style="background-color:#EFEFEF; border: 1px solid black;"></canvas>
       <canvas id="imagecanvas" width="600" height="600" style="display:none"></canvas>
-      <div id="output">
+      <div id="output" style="text-align:center; padding:7px; color:white; background-color: black; width:600px;">
 
       </div>
 <script src="turtle.js"></script>
@@ -31,17 +31,118 @@
     //grab a drawing context from our canvas
     var context = turtle_canvas.getContext("2d");
 
-   function move_turtle()
+   function getTurtle()
    {
-      forward(2);
-      setTimeout(move_turtle, 30);
-
-      //show current turtle x and y position on the screen
-      var turtle_x = Math.ceil(turtle.pos.x);
-      var turtle_y = Math.ceil(turtle.pos.y);
-      output.innerHTML = "(" + turtle_x + ", " + turtle_y + ")";
+      return turtle;
    }
-   move_turtle();
+
+   function moveTurtle()
+   {
+      //move turtle forward 2 spaces
+      forward(2);
+
+      //grab current turtle
+      var turtle = getTurtle();
+
+      //update turtle coordinates
+      updateCoords(turtle);
+
+      //detect edge of canvas
+      detectBoundary(turtle);
+
+      hasHitTail(turtle);
+
+      //call ourselves again in 30ms
+      setTimeout(moveTurtle, 30);
+   }
+
+   var location_history = new Array();
+   function hasHitTail(turtle)
+   {
+      var turtle_x = Math.round(turtle.pos.x);
+      var turtle_y = Math.round(turtle.pos.y);
+
+      //do these coordinates exist in our location history?
+      var found = false;
+      for(let item of location_history)
+      {
+         if( (item.x >= turtle_x - 2 && turtle.x <= turtle_x + 2) 
+             && 
+             (item.y >= turtle_y - 2 && turtle.y <= turtle_y + 2)
+             )
+         {
+            found = true;
+            break;
+         }
+      }
+      if(found === true)
+      {
+         alert('game over!');
+      }
+      location_history.push({x: turtle_x, y: turtle_y});
+      return found;
+   }
+
+   //calculates correct angle for bouncing off an edge
+   function getBounceAngle(x1, y1, x2, y2)
+   {
+      var angle = Math.atan((y1 - y2)/(x1 - x2));
+      angle = 180/Math.PI * angle;
+      return angle;
+   }
+
+   //if the turtle hits a boundary, this function
+   //will detect that and cause the turtle to move back towards 
+   //the canvas
+   var prev_x = getTurtle().pos.x;
+   var prev_y = getTurtle().pos.y;
+   function detectBoundary(turtle)
+   {
+      var min_x = -298;
+      var max_x = 298;
+      var min_y = -296;
+      var max_y = 296;
+      var turtle_x = turtle.pos.x;
+      var turtle_y = turtle.pos.y;
+
+      //is the turtle about to go beyond the x boundaries?
+      if(turtle_x <= min_x || turtle_x >= max_x)
+      {
+         var angle = getBounceAngle(turtle_x, turtle_y, prev_x, prev_y);
+         right(2*angle + 180);
+      }
+      else if(turtle_y <= min_y || turtle_y >= max_y)
+      {
+         //TODO: figure out how to fix.
+         var angle = getBounceAngle(turtle_x, turtle_y, prev_x, prev_y);
+         right(2* Math.abs(angle) + 180);
+      }
+
+      //remember position for later comparison
+      prev_x = turtle_x;
+      prev_y = turtle_y;
+
+   }
+
+   //display coordinates of turtle on the screen
+   function updateCoords(turtle)
+   {
+      //grab output from the HTML
+      var output = document.getElementById("output");
+
+      var turtle_x = Math.round(turtle.pos.x);
+      var turtle_y = Math.round(turtle.pos.y);
+
+      //turtle has a position property that has an x and y
+      output.innerHTML = "<h2>(" + turtle_x + ", " + turtle_y + ")</h2>";
+   }
+
+
+
+   
+
+
+   moveTurtle();
 
    document.addEventListener("keypress", function(evt){
       if(evt.key === 'w')
