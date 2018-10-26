@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+
+      #guessBoxes{
+         margin-top:20px;
+         display: flex; 
+         height:50px;
+      }
+
+       .guessBox{
+          width:25px;
+          height:25px;
+          border-bottom: 2px solid black;
+          margin-left: 15px;
+          text-align: center;
+          font-size: 1.1rem;
+       }
+    </style>
+    <script src="words.js"></script>
+</head>
+<body>
+   <h1>Hangman</h1>
+   <button id="newGameButton">New Game</button>
+   <div id="guessBoxes">
+
+   </div>
+   <div>
+      Make a guess: <input type="text" id="guessTextBox" />
+      <button id="guessButton">Guess</button>
+   </div>
+   <div>
+      Guess count: <span id="guessCounter"></span>
+   </div>
+<script>
+   
+   var word_to_guess = "";
+
+   //resets game state, done for you!
+   function newGame()
+   {
+      //get new word
+      var index = Math.floor(Math.random() * possible_words.length);
+      word_to_guess = possible_words[index];
+
+      //clear prior boxes
+      var guessBoxes = document.getElementById("guessBoxes");
+      guessBoxes.innerHTML = "";
+
+      //add new box for each letter
+      for(let letter of word_to_guess)
+      {
+         var box = '<div class="guessBox"></div>';
+         guessBoxes.innerHTML += box;
+      }
+
+      guess_counter = 0;
+      updateGuessCounter(0);
+   }
+
+   //Sets the Nth box (starting at 0) to contain the specified letter
+   function updateGuessBox(box_number, letter)
+   {
+      var guessBoxes = document.getElementById("guessBoxes");
+      guessBoxes.children[box_number].innerHTML = letter;
+   }
+
+   //updates the guess counter variable (below) as well as the guess counter on 
+   //the screen.
+   var guess_counter = 0;
+   function updateGuessCounter(amount)
+   {
+
+      //update HTML (done for you!)
+      document.getElementById("guessCounter").innerHTML = guess_counter;
+   }
+
+   //responds to user's request to play a new game.
+   document.getElementById("newGameButton").addEventListener("click", function(evt){
+      newGame();
+   });
+
+   //put your code in here to see if the letter is in the word.  Call updateGuessBox()
+   //to update the corresponding box with the letter if a match was found.  
+   //Also, be sure to display a win/lose message.
+   function checkGuess(letter)
+   {
+      //TODO: update guess boxes based on letter matches.  
+      //if player has guessed too much, alert game over
+   }
+
+   //Responds to the guess button being pressed.  Mostly complete with the exception
+   //of the single TODO.
+   document.getElementById("guessButton").addEventListener("click", function(evt){
+      var letter = document.getElementById("guessTextBox").value;
+
+      //check user guess
+      checkGuess(letter);
+
+      //TODO: increment guess counter
+
+      //update guess counter
+      updateGuessCounter(guess_counter);
+   });
+   
+</script>
+</body>
+</html>
