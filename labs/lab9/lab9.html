@@ -16,6 +16,8 @@
           height:25px;
           border-bottom: 2px solid black;
           margin-left: 15px;
+          text-align: center;
+          font-size: 1.1rem;
        }
     </style>
     <script src="words.js"></script>
@@ -59,11 +61,15 @@
       updateGuessCounter(0);
    }
 
+   //Sets the Nth box (starting at 0) to contain the specified letter
    function updateGuessBox(box_number, letter)
    {
       var guessBoxes = document.getElementById("guessBoxes");
+      guessBoxes.children[box_number].innerHTML = letter;
    }
 
+   //updates the guess counter variable (below) as well as the guess counter on 
+   //the screen.
    var guess_counter = 0;
    function updateGuessCounter(amount)
    {
@@ -72,18 +78,26 @@
       document.getElementById("guessCounter").innerHTML = guess_counter;
    }
 
+   //responds to user's request to play a new game.
    document.getElementById("newGameButton").addEventListener("click", function(evt){
       newGame();
    });
 
+   //put your code in here to see if the letter is in the word.  Call updateGuessBox()
+   //to update the corresponding box with the letter if a match was found.  
+   //Also, be sure to display a win/lose message.
    function checkGuess(letter)
    {
       //TODO: update guess boxes based on letter matches.  
       //if player has guessed too much, alert game over
    }
 
+   //Responds to the guess button being pressed.  Mostly complete with the exception
+   //of the single TODO.
    document.getElementById("guessButton").addEventListener("click", function(evt){
       var letter = document.getElementById("guessTextBox").value;
+
+      //check user guess
       checkGuess(letter);
 
       //TODO: increment guess counter

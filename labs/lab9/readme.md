@@ -1,0 +1,4 @@
+#Lab 9: The Game of Hangman (sort of)
+Hangman is a guessing game in which the player attempts to guess the letters in a word.  In this lab, you will build a simplified version of this classic game (we won't use graphics).  
+
+Most of your work will go into the ```checkGuess``` and ```guessButton``` click handler.  Be sure to check the comments for both.  The word to guess is randomly generated for you and is stored in the variable ```word_to_guess```. Use the variable ```guess_counter``` to track the player's guesses.  The number of guesses given to the player should be equal to the length of the word being guessed.  E.g. for the word "hello", the player would have 5 guesses.  If the player manages to make the guess within the allowed number of guesses, display a win message.  Otherwise, display a lose message.
