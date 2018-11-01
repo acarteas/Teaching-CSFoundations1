@@ -126,6 +126,8 @@
   <ItemGroup>
     <Text Include="input.txt" />
     <Text Include="kennedy.txt" />
+    <Text Include="kennedy_out.txt" />
+    <Text Include="kennedy_out_decode.txt" />
     <Text Include="notes.txt" />
     <Text Include="output.txt" />
     <Text Include="test.txt" />

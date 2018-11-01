@@ -35,5 +35,11 @@
     <Text Include="kennedy.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="kennedy_out.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="kennedy_out_decode.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
