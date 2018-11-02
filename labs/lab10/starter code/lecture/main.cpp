@@ -39,28 +39,6 @@ vector<string> encodeVector(const vector<string>* data, int offset);
 
 int main()
 {
-	/*
-	Agenda:
-        *. Office hours tomorrow changed to 1:45 - 2:45 (adam has meeting)
-        *. PA #6 assigned
-		*. Finding the smallest item in an array
-		*. Calculate average of array
-		*. Calculate median of array
-		*. Reading all contents of a file into a vector
-		*. Revisiting caesar cipher using functions
-	*/
-    vector<int> data{ 0, 1, 2 };
-    fillVector(&data, 1000);
-    //cout << "Smallest: " << findSmallest(&data) << endl;
-    
-
-    //have C++ automatically sort the data
-    sort(data.begin(), data.end());
-    cout << "Median: " << findMedian(&data) << endl;
-    data.push_back(3);
-    sort(data.begin(), data.end());
-    cout << "Median: " << findMedian(&data) << endl;
-
     //read contents of a file
     vector<string> file_data;
     readFile("kennedy.txt", &file_data);
