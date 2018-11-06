@@ -121,6 +121,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileOperations.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +133,10 @@
     <Text Include="notes.txt" />
     <Text Include="output.txt" />
     <Text Include="test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FileOperations.h" />
+    <ClInclude Include="Functions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
