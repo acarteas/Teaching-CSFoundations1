@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="FileOperations.cpp" />
     <ClCompile Include="Functions.cpp" />
+    <ClCompile Include="Lecture11-8.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="FileOperations.h" />
     <ClInclude Include="Functions.h" />
+    <ClInclude Include="Lecture11-8.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

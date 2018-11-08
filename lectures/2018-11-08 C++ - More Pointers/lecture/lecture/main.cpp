@@ -9,6 +9,7 @@
 //to import all the functions inside functions.h, we do another include
 #include "Functions.h"
 #include "FileOperations.h"
+#include "Lecture11-8.h"
 using namespace std;
 
 int main()
@@ -22,8 +23,7 @@ int main()
 			using sizeof() to loop through arrays
 		Connect 4 game
 	*/
-    vector<string> data;
-    readFile("kennedy.txt", &data);
-    data = randomEncodeVector(&data, 5);
-    int offset = findOffset(&data);
+
+    //passing arrays to functions
+    connect4Game();
 }
