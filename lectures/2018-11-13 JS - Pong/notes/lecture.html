@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <title></title>
+   <style>
+      html,
+      body {
+         width: 100%;
+         height: 100%;
+         margin: 0px;
+      }
+   </style>
+   <script src="scripts/Ball.js"></script>
+   <script src="scripts/ComputerPaddle.js"></script>
+   <script src="scripts/PlayerPaddle.js"></script>
+   <script src="scripts/Pong.js"></script>
+</head>
+
+<body>
+
+   <canvas id="myCanvas" width="480" height="320"></canvas>
+   <div id="MouseCoords"></div>
+   <script>
+
+      //grab a reference to our canvas
+      var canvas = document.getElementById("myCanvas");
+
+      //grab a drawing context from our canvas
+      var context = canvas.getContext("2d");
+      context.canvas.width = window.innerWidth - 5;
+      context.canvas.height = window.innerHeight - 5;
+
+      //play game of pong
+      var pong_game = new Pong(context);
+      pong_game.playGame();
+
+   </script>
+
+</body>
+
+</html>
