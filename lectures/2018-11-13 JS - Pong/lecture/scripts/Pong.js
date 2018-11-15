@@ -15,11 +15,17 @@ class Pong
 
       this.player_paddle = new PlayerPaddle(context);
       this.ball = new Ball(context);
+      this.computer_paddle = new ComputerPaddle(context, this.ball);
+
+      //tell ball about the paddles
+      this.ball.other_pieces.push(this.player_paddle);
+      this.ball.other_pieces.push(this.computer_paddle);
 
       //declare an array called movable_pieces
       this.movable_pieces = [];
       this.movable_pieces.push(this.player_paddle);
       this.movable_pieces.push(this.ball);
+      this.movable_pieces.push(this.computer_paddle);
 
       this.renderLoop = this.renderLoop.bind(this);
    }
