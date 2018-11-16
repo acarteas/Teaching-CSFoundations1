@@ -17,7 +17,20 @@
 <body>
 
    <canvas id="myCanvas" width="300" height="188"></canvas>
-   <div id="MouseCoords"></div>
+   <div>
+      <button onclick="resetBunny()">Reset</button>
+      <br />
+      <button onclick="removeRed()">Remove Red</button>
+      <button onclick="removeGreen()">Remove Green</button>
+      <button onclick="removeBlue()">Remove Blue</button>
+      <br />
+      <button onclick="negateRed()">Negate Red</button>
+      <button onclick="negateGreen()">Negate Green</button>
+      <button onclick="negateBlue()">Negate Blue</button>
+      <br />
+      <button onclick="grayscale()">Grayscale</button>
+      <button onclick="highContrast()">High Contrast</button>
+   </div>
    <script>
 
       //notes: https://css-tricks.com/manipulating-pixels-using-canvas/
@@ -33,14 +46,77 @@
       */
 
       var bunny = new Image();
-      bunny.src = "bunny.png";
-      bunny.addEventListener("load", drawBunny);
-      
+      bunny.src = "https://adamcarter.com/img/bunny.png?" + new Date().getTime();
+      //bunny.crossOrigin = "Anonymous";
+      bunny.setAttribute('crossOrigin', '');
+      bunny.addEventListener("load", resetBunny);
 
-      function drawBunny()
+      //Use this as a template for the other functions below...
+      function removeRed()
+      {
+         //...take this code
+         var image_data = context.getImageData(0,0, canvas.width, canvas.height);
+         var data = image_data.data;
+
+         //change how your FOR loop iterates.  Note the following:
+         //RED pixels occur ever 4th pixel starting at location 0, 4, 8, ...
+         //GREEN pixels occur every 4th pixel starting at location 1, 5, 9, ...
+         //BLUE pixels occur every 4th pixel starting at location 2, 6, 10, ...
+         for(var i = 0; i < data.length; i += 4)
+         {
+            //and this line too
+            data[i] = 0;
+         }
+         context.putImageData(image_data, 0, 0);
+      }
+
+      function resetBunny()
       {
          context.drawImage(bunny, 0, 0);
       }
+      
+      //set all green pixels to 0
+      function removeGreen()
+      {
+
+      }
+      
+      //set all blue pixels to 0
+      function removeBlue()
+      {
+
+      }
+
+      //set all red pixels equal to 255 - current value
+      function negateRed()
+      {
+
+      }
+
+      //set all green pixels equal to 255 - current value
+      function negateGreen()
+      {
+
+      }
+
+      //set all blue pixels equal to 255 - current value
+      function negateBlue()
+      {
+
+      }
+
+      //set pairs of (R,G,B) equal to AVG(R+G+B)
+      function grayscale()
+      {
+
+      }
+
+      //for each RGB value, set pixel = 0 if original value is above 127.  Set to 255 otherwise.
+      function highContrast()
+      {
+
+      }
+      
    </script>
 
 </body>
