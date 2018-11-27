@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+       #StatsList{
+          list-style: none;
+          margin:0px;
+          padding:0px;
+       }
+
+       #StatsList li{
+          display: inline;
+          padding: 3px 7px 7px 3px;
+       }
+    </style>
+</head>
+<body>
+   <h1>Word Counter</h1>
+   <textarea id="WordsTextBox" rows="20" cols="80"></textarea>
+   <div>
+      <div>
+         <ul id="StatsList">
+            <li>
+                  Paragraphs: <span id="ParagraphCount"></span> 
+            </li>
+            <li>
+                  Words: <span id="WordCount"></span>
+            </li>
+            <li>
+                  Characters (no spaces): <span id="CharsNoSpaces"></span>
+            </li>
+            <li>
+                  Characters (with spaces): <span id="CharsWithSpaces"></span>
+            </li>
+            <li>
+                  Lines: <span id="NumberOfLines"></span>
+            </li>
+         </ul>
+         Lines with more than 80 chars: <span id="OverflowingLines"></span>
+      </div>
+      <h2>Modified Content</h2>
+      <div id="Output">
+
+      </div>
+   </div>
+<script>
+
+   var words_text_box = document.getElementById("WordsTextBox");
+
+   words_text_box.addEventListener("keyup", processText);
+
+   function processText()
+   {
+      var text = words_text_box.value;
+
+      calculateParagraphs(text);
+      calculateWordCount(text);
+      calculateCharsNoSpacesCount(text);
+      calculateCharsWithSpacesCount(text);
+      calculateNumberOfLinesCount(text);
+      calculateOverflowingLinesCount(text);
+
+      //TODO: update output_text with our text content with line numbers included
+      var output_text = document.getElementById("Output");
+      var lines = text.split("\n");
+      output_text.innerHTML = "";
+      for(let line of lines)
+      {
+         output_text.innerHTML += line + "<br />";
+      }
+   }
+
+   function calculateParagraphs(text)
+   {
+      //TODO: calculate number of paragraphs
+      updateParagraphsCount(0);
+   }
+
+   function calculateWordCount(text)
+   {
+      //TODO: calculate number of words
+      updateWordCount(0);
+   }
+
+   function calculateCharsNoSpacesCount(text)
+   {
+      //TODO: calculate number of chars in document, not including spaces
+      updateCharsNoSpacesCount(0);
+   }
+
+   function calculateCharsWithSpacesCount(text)
+   {
+      //TODO: calculate number of chars in document, including spaces
+      updateCharsWithSpacesCount(0);
+   }
+
+   function calculateNumberOfLinesCount(text)
+   {
+      //TODO: calculate number of lines in text
+      updateNumberOfLinesCount(0);
+   }
+
+   function calculateOverflowingLinesCount(text)
+   {
+      //TODO: calculate number of overflowing lines
+      var overflows = [];
+      updateOverflowingLinesList(overflows);
+   }
+
+
+   function updateParagraphsCount(count)
+   {
+      var paragraphs_count = document.getElementById("ParagraphCount");
+      paragraphs_count.innerHTML = count;
+   }
+
+   function updateWordCount(count)
+   {
+      var word_count_text = document.getElementById("WordCount");
+      word_count_text.innerHTML = count;
+   }
+
+   function updateCharsNoSpacesCount(count)
+   {
+      var chars_no_spaces_count = document.getElementById("CharsNoSpaces");
+      chars_no_spaces_count.innerHTML = count;
+   }
+
+   function updateCharsWithSpacesCount(count)
+   {
+      var chars_with_spaces_count = document.getElementById("CharsWithSpaces");
+      chars_with_spaces_count.innerHTML = count;
+
+   }
+
+   function updateNumberOfLinesCount(count)
+   {
+      var line_count = document.getElementById("NumberOfLines");
+      line_count.innerHTML = count;
+   }
+
+   function updateOverflowingLinesList(items)
+   {
+      var overflowing_lines = document.getElementById("OverflowingLines");
+      if(items.length > 0)
+      {
+         overflowing_lines.innerHTML = items.join(", ");
+      }
+      else
+      {
+         overflowing_lines.innerHTML = "None";
+      }
+   }
+   
+
+</script>
+</body>
+</html>
