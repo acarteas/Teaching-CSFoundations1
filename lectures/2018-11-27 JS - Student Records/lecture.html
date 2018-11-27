@@ -6,51 +6,168 @@
    <title></title>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous">
-   <style>
-
-   </style>
+   <script src="Student.js"></script>
 </head>
 
 <body>
    <div class="container">
       <div id="StudentDetails">
-         <div clas="row">
-            <h1>Add Student</h1>
-            <div class="col-sm">
-               <span class="col">
-                  Name:
-               </span>
-               <span class="col">
-                  <input type="text" id="NameTextBox" />
-               </span>
-            </div>
+         <h1>Add Student</h1>
+         <div class="row">
+            <span class="col-sm">
+               Name:
+            </span>
+            <span class="col-sm">
+               <input type="text" id="NameTextBox" />
+            </span>
+         </div>
+         <div class="row">
+            <span class="col-sm">
+               GPA:
+            </span>
+            <span class="col-sm">
+               <input type="text" id="GPATextBox" />
+            </span>
+         </div>
+         <div class="row">
+            <span class="col-sm">
+               Class Standing:
+            </span>
+            <span class="col-sm">
+               <input type="text" id="ClassStandingTextBox" />
+            </span>
+         </div>
+         <div class="row">
+            <span class="col-sm">
+               Age:
+            </span>
+            <span class="col-sm">
+               <input type="text" id="AgeTextBox" />
+            </span>
+         </div>
+         <div class="row">
+            <span class="col-sm">
+               Major:
+            </span>
+            <span class="col-sm">
+               <input type="text" id="MajorTextBox" />
+            </span>
          </div>
       </div>
-      <div clas="row">
-         <button id="AddStudentButton">
+      <div class="row">
+         <button id="AddStudentButton" onclick="addStudent()">
             Add Student
          </button>
       </div>
-      <div clas="row">
+      <div class="row">
          <h2>Student Search</h2>
-         <span class="col">
-            Name:
-         </span>
-         <span class="col">
-            <input type="text" id="NameSearchTextBox" />
-         </span>
       </div>
-      <div clas="row">
-         <button id="SearchButton">
-            Search
-         </button>
+      <div class="row">
+         <div class="row">
+            <span class="col-sm">
+               Name:
+            </span>
+            <span class="col-sm">
+               <input type="text" id="SearchNameBox" onkeyup="filterByName()" />
+            </span>
+         </div>
       </div>
       <div class="row" id="ResultsDiv">
-         
+
       </div>
    </div>
 
    <script>
+
+      var students = [];
+
+      //purpose: grab HTML content and create a new student object. 
+      //add to array of students.
+      function addStudent()
+      {
+         var name = document.getElementById("NameTextBox");
+         var gpa = document.getElementById("GPATextBox");
+         var class_standing = document.getElementById("ClassStandingTextBox");
+         var age = document.getElementById("AgeTextBox");
+         var major = document.getElementById("MajorTextBox");
+
+         //add student only if data from form is valid
+         var fields = [name, gpa, class_standing, age, major];
+         var is_valid_data = true;
+         for(let field of fields)
+         {
+            if(field.value === "")
+            {
+               is_valid_data = false;
+            }
+         }
+
+         if(is_valid_data === true)
+         {
+            var some_student = new Student();
+            some_student.name = name.value;
+            some_student.gpa = gpa.value;
+            some_student.class_standing = class_standing.value;
+            some_student.age = age.value;
+            some_student.major = major.value;
+
+            //clear out old values
+            name.value = "";
+            gpa.value = "";
+            class_standing.value = "";
+            age.value = "";
+            major.value = "";
+            
+            students.push(some_student);
+            displayStudents(students)
+         }
+         else
+         {
+            alert("Missing form data");
+         }
+      }
+
+      //purpose: display all students that we have records for
+      function displayStudents(students)
+      {
+         var results = document.getElementById("ResultsDiv");
+         results.innerHTML = "";
+         for(let student of students)
+         {
+            var button_text = '<button onclick="removeStudent(\''+ student.name +'\')">Remove</button>';
+            results.innerHTML += button_text + " " + student.name + "<br />";
+         }
+      }
+
+      function removeStudent(name)
+      {
+         for(var i = 0; i < students.length; i++)
+         {
+            if(name === students[i].name)
+            {
+               students = students.splice(i - 1, 1);
+            }
+         }
+         displayStudents(students);
+      }
+
+      //filters students by name
+      function filterByName()
+      {
+         var pattern = document.getElementById("SearchNameBox").value;
+         var results = [];
+         for(let student of students)
+         {
+            //does the search pattern match the student's name
+            if(pattern === student.name.substring(0, pattern.length))
+            {
+               //this should be a match.
+               results.push(student);
+            }
+         }
+
+         displayStudents(results);
+      }
 
    </script>
 
