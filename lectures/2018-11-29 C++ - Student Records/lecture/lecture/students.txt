@@ -11,12 +11,15 @@ Math
 William Jenkins
 2.0
 Junior
+19
 English
 Beatrice Mary
-Senior
 3.0
+Senior
+29
 History
 Bill Robinson
 3.1
 Junior
+21
 Computer Science
