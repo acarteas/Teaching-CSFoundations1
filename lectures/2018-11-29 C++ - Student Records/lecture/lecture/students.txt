@@ -1,0 +1,22 @@
+Bob Smith
+3.5
+Sophomore
+20
+Computer Science
+Margaret Bailey
+3.8
+Freshman
+18
+Math
+William Jenkins
+2.0
+Junior
+English
+Beatrice Mary
+Senior
+3.0
+History
+Bill Robinson
+3.1
+Junior
+Computer Science
