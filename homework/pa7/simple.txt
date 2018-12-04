@@ -1,0 +1,5 @@
+This line and this
+line are the same paragraph.
+
+This is another paragraph.  Note how there is a blank line between this line and the preceeding paragraph.  Also note how this line has more than 80 characters in it.
+This is a line break, but doesn't constitute another paragraph.
